@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:02:11 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/21 19:36:49 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:10:30 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define __FIXED_H__
 
 #include <iostream>
+#include <cmath>
 
 
 // ************************************************************************** //
@@ -30,9 +31,17 @@ public:
 	Fixed (const Fixed &fixed);
 	Fixed & operator = (const Fixed &fixed);
 
-	int getRawBits( void ) const;
-	void setRawBits( int const raw );
+	Fixed ( const int value );
+	Fixed ( const float value );
 
+
+	static float	max();
+
+	int		getRawBits( void ) const;
+	void	setRawBits( int const raw );
+
+	float	toFloat( void ) const;
+	int		toInt( void ) const;
 
 private:
 
@@ -40,6 +49,9 @@ private:
 	static const int _n_fractionBits = 8;
 
 };
+
+std::ostream & operator << (std::ostream& os, const Fixed &fixed);
+
 #endif /* __FIXED_H__ */
 
 

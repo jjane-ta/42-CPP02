@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:51:06 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/22 20:39:36 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:30:58 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ Fixed::Fixed ( void ) :
 	std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed ( const int value ) : _value(value << _n_fractionBits)
+Fixed::Fixed ( const int value )// : _value(value << _n_fractionBits)
 {
+	this->valueToFixed((float)value);
 	std::cout << "Int constructor called\n";
 }
 
-Fixed::Fixed ( const float value ) : _value(roundf(value * ((1 << _n_fractionBits) - 1 )))
+Fixed::Fixed ( const float value )// : _value(roundf((double)value * (double) (1 << _n_fractionBits)))
 {
+	this->valueToFixed((float)value);
 	std::cout << "Float constructor called\n";
 }
 
@@ -44,7 +46,6 @@ Fixed & Fixed::operator = (const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called\n";
 	_value = fixed.getRawBits();
-
 	return (*this);
 }
 
@@ -56,17 +57,22 @@ int Fixed::getRawBits( void ) const
 void Fixed::setRawBits( int const raw )
 {
 	_value = raw;
-
 }
 
 float Fixed::toFloat( void ) const
 {
-	return (roundf((float)_value / (1 << 8)));
+	float value = (float)_value / (1 << _n_fractionBits);
+	if (value > Fixed::max())
+		return (Fixed::max());
+	else if (value < Fixed::min())
+		return (Fixed::min());
+	else
+		return (value);
 }
 
 int Fixed::toInt( void ) const
 {
-	return (_value >> 8);
+	return (_value >> _n_fractionBits);
 }
 
 std::ostream & operator << (std::ostream& os, const Fixed &fixed)
@@ -76,18 +82,32 @@ std::ostream & operator << (std::ostream& os, const Fixed &fixed)
 
 float	Fixed::max()
 {
-	Fixed max_value;
-
-
-	std::cout << "int max => " <<  std::numeric_limits<int>::max() << std::endl;
-	max_value.setRawBits(std::numeric_limits<int>::max());
-
-	std::cout << max_value.getRawBits() << std::endl;
-	std::cout << max_value.toInt() << std::endl;
-	std::cout << max_value.toFloat() << std::endl;
-	std::cout << max_value << std::endl;
-
-	return (max_value.toFloat());
+	return (INT_MAX >> _n_fractionBits);
 }
 
+float	Fixed::min()
+{
+	return (INT_MIN >> _n_fractionBits);
+}
 
+void	Fixed::valueToFixed(float value)
+{
+	if (!isfinite(value))
+	{
+		if (value > 0)
+			this->_value = INT_MAX;
+		else if (value < 0)
+			this->_value = INT_MIN;
+		else
+			this->_value = 0.0;		
+	}
+	else
+	{
+		if (value > Fixed::max())
+			this->_value = INT_MAX;
+		else if (value < Fixed::min())
+			this->_value = INT_MIN;
+		else
+			this->_value = roundf((double)value * (double) (1 << _n_fractionBits));
+	}
+}

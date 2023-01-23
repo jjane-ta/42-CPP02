@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:02:11 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/22 20:10:30 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:18:43 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ public:
 
 
 	static float	max();
+	static float	min();
 
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
@@ -45,8 +46,10 @@ public:
 
 private:
 
-	int	_value;
-	static const int _n_fractionBits = 8;
+	int					_value;
+	static const int	_n_fractionBits = 8;
+	
+	void valueToFixed(float value);
 
 };
 

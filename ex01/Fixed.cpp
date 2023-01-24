@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:51:06 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/24 16:19:55 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:15:13 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Fixed & Fixed::operator = (const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called\n";
 	_value = fixed.getRawBits();
-	//_error = fixed._error; ???????
+	_error = fixed._error;
 	return (*this);
 }
 

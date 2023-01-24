@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:12:59 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/24 16:52:26 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:19:52 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,37 @@ int main( void )
 				 << " ERROR : " << std::boolalpha << !min.good() << std::endl;	
 		std::cout << std::endl;
 	}
+	main_print_banner("TEST error inheritance when copy");
+	{	
+		Fixed a_i(INT_MAX);
+		Fixed b_i = a_i;
+		Fixed a_f((float)(INT_MAX));
+		Fixed b_f = a_f;
+
+		std::cout << std::endl;	
+		std::cout << "\tFixed(int) a_i overload => " <<  a_i\
+				<< " ERROR : " << std::boolalpha << !a_i.good() << std::endl;
+		std::cout << "\tFixed b_i = a_i |   b_i => " << b_i\
+				<< " ERROR : " << std::boolalpha << !b_i.good() << std::endl;
+		std::cout << std::endl;	
+		std::cout << "\tFixed(float) a_f overload => " << a_f\
+				<< " ERROR : " << std::boolalpha << !a_f.good() << std::endl;
+		std::cout << "\tFixed b_f = a_f |     b_f => " << b_f\
+				<< " ERROR : " << std::boolalpha << !b_f.good() << std::endl;
+		std::cout << std::endl;
+		b_i.clear();
+		std::cout << "\tAfter clear error b_i | ERROR a_i : " << std::boolalpha << !a_i.good()\
+				<< " ERROR b_i : " << std::boolalpha << !b_i.good() << std::endl;
+		b_f.clear();
+		std::cout << "\tAfter clear error b_f | ERROR a_f : " << std::boolalpha << !a_f.good()\
+				<< " ERROR b_i : " << std::boolalpha << !b_f.good() << std::endl;
+		std::cout << std::endl;
+
+	
+		
+
+	}
+
 	return 0;
 }
 

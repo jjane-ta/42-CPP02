@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:51:06 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/25 20:33:02 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:57:28 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int Fixed::format = 0;
 
 // OCCF
 Fixed::Fixed ( void ) :
-	_value(0)
+	_value(0),
+	_error(0)
 {
 	
 	//std::cout << "Default constructor called\n";
@@ -65,7 +66,9 @@ int Fixed::getRawBits( void ) const
 
 void Fixed::setRawBits( int const raw )
 {
-	_value = raw;
+
+//	std::cout << "\n raw = " << raw << std::endl;
+	this->_value = raw;
 }
 
 //Parser
@@ -126,8 +129,6 @@ void	Fixed::_checkRawBits(long value)
 	}
 }
 
-
-
 // Limits
 
 float	Fixed::max()
@@ -142,6 +143,8 @@ float	Fixed::min()
 
 Fixed	Fixed::max(Fixed &a, Fixed &b)
 {
+	std::cout << "REF";
+
 	if (a >= b)
 		return (a);
 	return (b);
@@ -149,6 +152,7 @@ Fixed	Fixed::max(Fixed &a, Fixed &b)
 
 Fixed	Fixed::max(const Fixed &a, const Fixed &b)
 {
+	std::cout << "CONST REF";
 	if (a >= b)
 		return (a);
 	return (b);
@@ -156,6 +160,8 @@ Fixed	Fixed::max(const Fixed &a, const Fixed &b)
 
 Fixed	Fixed::min(Fixed &a, Fixed &b)
 {
+	std::cout << "REF";
+
 	if (a <= b)
 		return (a);
 	return (b);
@@ -163,6 +169,7 @@ Fixed	Fixed::min(Fixed &a, Fixed &b)
 
 Fixed	Fixed::min(const Fixed &a, const Fixed &b)
 {
+	std::cout << "CONST REF";
 	if (a <= b)
 		return (a);
 	return (b);
@@ -184,54 +191,69 @@ void	Fixed::clear( void )
 
 // 6 comparison operators: >, <, >=, <=, == and !=
 
-inline bool Fixed::operator > ( const Fixed & other ) const
+bool Fixed::operator > ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() > other.getRawBits())
 		return (true);
 	return (false);
 }
 
-inline bool Fixed::operator < ( const Fixed & other ) const
+bool Fixed::operator < ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() < other.getRawBits())
 		return (true);
 	return (false);
 }
 
-inline bool Fixed::operator >= ( const Fixed & other ) const
+bool Fixed::operator >= ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() >= other.getRawBits())
 		return (true);
 	return (false);
 }
 
-inline bool  Fixed::operator <= ( const Fixed & other ) const
+bool  Fixed::operator <= ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() <= other.getRawBits())
 		return (true);
 	return (false);
 }
 
-inline bool  Fixed::operator == ( const Fixed & other ) const
+bool  Fixed::operator == ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() == other.getRawBits())
 		return (true);
 	return (false);
 }
 
-inline bool  Fixed::operator != ( const Fixed & other ) const
+bool  Fixed::operator != ( const Fixed & other ) const
 {
+	if (this->_error || other._error)
+		return (false);
 	if (this->getRawBits() != other.getRawBits())
 		return (true);
 	return (false);
 }
 
 // 4 arithmetic operators: +, -, *, and /
+
 Fixed Fixed::operator + ( const Fixed & other )
 {
 	Fixed	c;
 	long	raw_result = (long) this->getRawBits() + (long) other.getRawBits();
 	c._checkRawBits(raw_result);
+	if (this->_error || other._error)
+		c._error = 1;
 	return (c);
 }
 
@@ -239,24 +261,21 @@ Fixed Fixed::operator - ( const Fixed & other)
 {
 	Fixed	c;
 	long	raw_result = (long) this->getRawBits() - (long) other.getRawBits();
+	
 	c._checkRawBits(raw_result);
+	if (this->_error + other._error)
+		c._error = 1;
 	return (c);
 }
 
 Fixed Fixed::operator * ( const Fixed & other )
 {
 	Fixed	c;
-
-/*
-	long	raw_result = (long) this->toInt() * (long) other.toInt();
-	c._valueToFixed((float)raw_result);
-	
-	return (c);
-*/
-	
 	
 	long	raw_result = ((long) this->getRawBits() * (long) other.getRawBits()) / (1 << _n_fractionBits);
 	c._checkRawBits(raw_result);
+	if (this->_error || other._error)
+		c._error = 1;
 	return (c);
 
 }
@@ -271,9 +290,10 @@ Fixed Fixed::operator / ( const Fixed & other )
 	else
 	{
 		raw_result = ((long) this->getRawBits() / (long) other.getRawBits()) * (1 << _n_fractionBits);
-;
 		c._checkRawBits(raw_result);
 	}
+	if (this->_error || other._error)
+		c._error = 1;
 	return (c);
 }
 
@@ -282,7 +302,7 @@ Fixed Fixed::operator / ( const Fixed & other )
 Fixed & Fixed::operator ++ ()
 {
 	Fixed increment;
-	
+
 	increment.setRawBits(1);
 	*this = *this + increment;
 	return ( *this );

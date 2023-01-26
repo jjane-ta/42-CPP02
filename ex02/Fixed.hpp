@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:02:11 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/25 18:06:57 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:50:59 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ public:
 	void	clear ( void );
 
 	// 6 comparison operators: >, <, >=, <=, == and !=
-	inline bool operator > ( const Fixed & other ) const;
-	inline bool operator < ( const Fixed & other ) const;
-	inline bool operator >= ( const Fixed & other ) const;
-	inline bool operator <= ( const Fixed & other ) const;
-	inline bool operator == ( const Fixed & other ) const;
-	inline bool operator != ( const Fixed & other ) const;
+	bool operator > ( const Fixed & other ) const;
+	bool operator < ( const Fixed & other ) const;
+	bool operator >= ( const Fixed & other ) const;
+	bool operator <= ( const Fixed & other ) const;
+	bool operator == ( const Fixed & other ) const;
+	bool operator != ( const Fixed & other ) const;
 
 	// 4 arithmetic operators: +, -, *, and /
 	Fixed operator + ( const Fixed & other );

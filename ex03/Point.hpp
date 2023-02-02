@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:56:08 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/27 19:57:42 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:08:00 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 
 # include "Fixed.hpp"
 
+
 // ************************************************************************** //
 //                              Point Class                                
 // ************************************************************************** //
+
+class Point;
+typedef Point Vector;
 
 class Point {
 
@@ -28,27 +32,31 @@ public:
 	Point ( void );
 	~Point ( void );
 	Point (const Point &point);
-	Point & operator = (const Point &point);
+	const Point & operator = (const Point & point) const;
 
 	// Parametrized constructor
 	Point (const float x, const float y);
 	Point (const Fixed & x, const Fixed & y);
 
+
 	//Print
 	void	print ( void ) const;
 
 	//Director Point
-	static Point v_director (const Point & a, const Point & b);
-	static Point v_normal(const Point & direction);
-	static Fixed p_escalar(const Point & v_a, const Point & v_b);
+	static Vector	v_director (const Point & a, const Point & b);
+	static Vector	v_normal(const Vector & direction);
+	static Vector	v_invert(const Vector & vector);
+	static Fixed	p_escalar(const Vector & v_a, const Vector & v_b);
 	
 private:
 
-	Fixed _x;
-	Fixed _y;
+	
+	const Fixed _x;
+	const Fixed _y;
 
 
 };
+
 
 #endif /* __POINT_H__ */
 

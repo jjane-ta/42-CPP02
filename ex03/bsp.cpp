@@ -6,62 +6,63 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:14:31 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/01/27 20:21:01 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/02 19:48:40 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsp.hpp"
 
-typedef struct s_segment
+typedef struct s_node
 {
-	Point p[2];
-	Point dir;
-	Point norm;
-} t_segment;
+//	t_segment	*segments[3];
+	struct s_node		*front;
+	struct s_node		*back;
+	bool		leaf;
+	bool		solid;
+} t_node;
 
 
+/*
+int	init_segment(t_segment & s, const Point & p1, const Point & p2, const Point convexTo);
+Fixed	clasifyPoint(const Point & p, const t_segment & s);
+t_node	*bspMakeTree(t_segment **s);
 
+*/
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
+	(void) point;
 	(void) a;
 	(void) b;
 	(void) c;
-	(void) point;
 
-	Point s_ab[2] = {a, b};
-	Point s_ac[2] = {a, c};
-	Point s_bc[2] = {b, c};
+	Segment s[3] = {Segment(a,b,c), Segment(a,c,b), Segment(b,c,a)}; 
 
-	Point v_ab;
-	Point v_ac;
-	Point n_ab;
-	Fixed value;
+	s[0].print();
+	s[1].print();
+	s[2].print();
 
-	v_ab = Point::v_director(a, b);
-	n_ab = Point::v_normal(v_ab);
-
-	v_ac = Point::v_director(a, c);
-	value = Point::p_escalar(n_ab, v_ac);
-	
-
-	std::cout << "a = "; a.print();
-	std::cout << " | b = "; b.print();
-	std::cout <<" | direction vector = "; v_ab.print();
-	std::cout <<" | normal vector = "; n_ab.print();
-	std::cout << std::endl;
-
-	std::cout << "a = "; a.print();
-	std::cout << " | c = "; c.print();
-	std::cout <<" | direction vector = "; v_ac.print();
-	std::cout << std::endl;
-
-	std::cout << "Value = " << value << std::endl;
-
-
-
+	for (int i = 0; i < 3; i++)
+	{
+		if (s[i].good() == 0)
+		{
+			s[i].print();
+			std::cout << "Not a valid triangle" << std::endl;
+			return (false);
+		}
+	}
 	return (true);
 }
 
+/*
+t_node	*bspMakeTree(t_segment **s)
+{
+	(void) s;
+	t_node *tree = NULL;
 
 
+	//TODO
 
+
+	return (tree);
+}
+*/

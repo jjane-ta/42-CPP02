@@ -6,13 +6,13 @@
 #    By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/21 17:02:03 by jjane-ta          #+#    #+#              #
-#    Updated: 2023/02/02 15:13:28 by jjane-ta         ###   ########.fr        #
+#    Updated: 2023/02/03 20:14:03 by jjane-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = my_amazing_bsd
 
-SRC = main.cpp Fixed.cpp Point.cpp Segment.cpp bsp.cpp
+SRC = main.cpp Fixed.cpp Point.cpp Segment.cpp bsp.cpp BspNode.cpp
 
 OBJ = $(addprefix .,$(addsuffix .o,$(basename $(SRC))))
 DEP = $(addprefix .,$(addsuffix .d,$(basename $(SRC))))

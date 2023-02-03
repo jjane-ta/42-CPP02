@@ -6,63 +6,63 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:14:31 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/02 19:48:40 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/03 20:23:38 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsp.hpp"
 
-typedef struct s_node
-{
-//	t_segment	*segments[3];
-	struct s_node		*front;
-	struct s_node		*back;
-	bool		leaf;
-	bool		solid;
-} t_node;
+//BspNode	*bspMakeTree(Segment **s);
+Segment	**bsp_init_segments(Point const a, Point const b, Point const c);
+Segment **bsp_clean_segments(Segment **s);
 
 
-/*
-int	init_segment(t_segment & s, const Point & p1, const Point & p2, const Point convexTo);
-Fixed	clasifyPoint(const Point & p, const t_segment & s);
-t_node	*bspMakeTree(t_segment **s);
-
-*/
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	(void) point;
-	(void) a;
-	(void) b;
-	(void) c;
-
-	Segment s[3] = {Segment(a,b,c), Segment(a,c,b), Segment(b,c,a)}; 
-
-	s[0].print();
-	s[1].print();
-	s[2].print();
-
-	for (int i = 0; i < 3; i++)
+		
+	BspNode	*bspTree;
+	Segment **s = bsp_init_segments(a, b, c);
+	if (!s)
 	{
-		if (s[i].good() == 0)
-		{
-			s[i].print();
-			std::cout << "Not a valid triangle" << std::endl;
-			return (false);
-		}
+		std::cout << "Not a valid triangle" << std::endl;
+		return (false);
 	}
+	//debug
+	s[0]->print();
+	s[1]->print();
+	s[2]->print();
+
+	bspTree = new BspNode(s);
+
+	
+	// Consulta el arbol con el punto
+
+	bsp_clean_segments(s);
+	delete bspTree;
+
 	return (true);
 }
 
-/*
-t_node	*bspMakeTree(t_segment **s)
+
+Segment	**bsp_init_segments(Point const a, Point const b, Point const c)
 {
-	(void) s;
-	t_node *tree = NULL;
-
-
-	//TODO
-
-
-	return (tree);
+	Segment **s = new (Segment(*[4]));
+	
+	s[0] = new Segment(a,b,c);
+	s[1] = new Segment(a,c,b);
+	s[2] = new Segment(b,c,a);
+	s[3] = nullptr;
+	if (!s[0]->good() || !s[1]->good() || !s[2]->good())
+		return (bsp_clean_segments(s));
+	return (s);
 }
-*/
+
+Segment **bsp_clean_segments(Segment **s)
+{
+	int i = 0;
+	while (s && s[i])
+		delete s[i++];
+	delete s;
+	return (nullptr);
+}

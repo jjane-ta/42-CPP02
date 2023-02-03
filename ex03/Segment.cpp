@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:34:39 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/02 19:57:17 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:44:19 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,24 @@ Segment::Segment (const Point & p1, const Point & p2, const Point & convexTo) :
 	_p2(p2),
 	_director(Vector::v_director(p1 , p2)),	
 	_normal(_set_normal(convexTo))
-{}
+{
+	if (!_p1.good() || !_p2.good() || !_director.good() || !_normal.good())
+		_error = 1;
+}
 
 Vector Segment::_set_normal( const Point & convexTo )
 {	
 	Vector	n = Vector::v_normal(this->_director);
 	Vector	dir = Vector::v_director(this->_p1, convexTo);
 	Fixed	value  = Vector::p_escalar(n, dir);
-
+	
 	this->_error = 0;
-	if (value > 0) 
+	if (value.good() && value > 0) 
 		return (n);
-	if (value < 0) 
+	if (value.good() && value < 0) 
 		return (Vector::v_invert(n));
 	this->_error = true;
-	return (Vector());
+		return (Vector());
 }
 
 Fixed Segment::isLookingPoint(const Point point)

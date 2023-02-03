@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:56:08 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/02 18:08:00 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:16:19 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	Point ( void );
 	~Point ( void );
 	Point (const Point &point);
-	const Point & operator = (const Point & point) const;
+	Point & operator = (const Point & point);
 
 	// Parametrized constructor
 	Point (const float x, const float y);
@@ -47,13 +47,14 @@ public:
 	static Vector	v_normal(const Vector & direction);
 	static Vector	v_invert(const Vector & vector);
 	static Fixed	p_escalar(const Vector & v_a, const Vector & v_b);
+
+	//Error
+	bool	good( void ) const;
 	
 private:
-
 	
 	const Fixed _x;
-	const Fixed _y;
-
+	const Fixed	_y;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:12:59 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 17:32:36 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:16:18 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main( void )
 	std::cout << std::endl;
 	main_print_banner("Inside test");
 	{
-		if (bsp(Point(0,0), Point(0,3), Point(3,3), Point(1,2)))
+		if (bsp(Point(0,0), Point(0,3), Point(3,3), Point(0.01,1)))
 			std::cout << "\nINSIDE" << std::endl;
 		else
 			std::cout << "\nOUTSIDE" << std::endl;
@@ -29,7 +29,20 @@ int main( void )
 	}
 	main_print_banner("\nOutside test");
 	{
-		if (bsp(Point(0,0), Point(3,3), Point(0,3), Point(3,0)))
+		std::cout << "Point back AB";
+		if (bsp(Point(0,0), Point(3,3), Point(0,3), Point(-1,2)))
+			std::cout << "\nINSIDE" << std::endl;
+		else
+			std::cout << "\nOUTSIDE" << std::endl;
+		std::cout << std::endl; 
+		std::cout << "Point back AC";
+		if (bsp(Point(0,0), Point(3,3), Point(0,3), Point(2,1)))
+			std::cout << "\nINSIDE" << std::endl;
+		else
+			std::cout << "\nOUTSIDE" << std::endl;
+		std::cout << std::endl; 
+		std::cout << "Point back BC";
+		if (bsp(Point(0,0), Point(3,3), Point(0,3), Point(2,5)))
 			std::cout << "\nINSIDE" << std::endl;
 		else
 			std::cout << "\nOUTSIDE" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:22:42 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 17:06:03 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:11:34 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,11 @@ BspNode::BspNode (Segment **s)
 		std::cout << "back => ";
 	}
 	segments = &s[1];
-	back = new BspNode(solid);
+	back = new BspNode(false);
 	if (DEBUG)
 		std::cout << "front => ";
 	if (!*segments)
-	{
-		leaf = true;
-		front = new BspNode(leaf);
-	}
+		front = new BspNode(true);
 	else
 		front = new BspNode(segments);
 }

@@ -1,5 +1,7 @@
 # 42-CPP02
 
+ONPROGRESS
+
 This proyect implement usefull fixed class for a computer graphics and use it in bsp (Binary space partitioning) function.
 
 Fixed Class:

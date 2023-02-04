@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:01:17 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/03 15:15:57 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:27:51 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ Point::~Point ( void ) {}
 
 Point::Point (const Point &point) : _x(point._x), _y(point._y) {}
 
-//Point & Point::operator = (const Point & point){}
+Point	Point::operator = (const Point & point)
+{
+	return (Point(point));
+}
 
 
 // Parametrized constructor

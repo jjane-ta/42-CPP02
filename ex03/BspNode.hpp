@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:42:00 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/03 20:21:18 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:00:33 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ public:
 
 	//OCCF
 	~BspNode ( void );
+	BspNode (const BspNode & bspnode);
+	BspNode operator = (const BspNode & bspnode);
 	
+	//Parametrized Constructor
 	BspNode (Segment **s);
-	BspNode (bool type);
-
-	void	init( void );
+	BspNode (const bool & type);
+	
+	bool	checkPoint(const Point & point);
 
 private:
 
 	//OCCF
 	BspNode ( void );
-	BspNode (const BspNode &bspnode);
-	BspNode & operator = (const BspNode &bspnode);
-
-
+	
 	Segment	*node;
 	Segment	**segments;
 	BspNode	*front;
@@ -47,7 +47,12 @@ private:
 	bool	leaf;
 	bool	solid;
 
+	void	init( void );
+
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
 #endif /* __BSPNODE_H__ */
 
 

@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:26:57 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/02 19:55:45 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:31:47 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	//OCCF
 	~Segment ( void );
 	Segment (const Segment &segment);
-	Segment & operator = (const Segment &segment);
+	Segment operator = (const Segment &segment);
 
 	//Parametrized constructor
 	Segment (const Point & p1, const Point & p2, const Point & convexTo);

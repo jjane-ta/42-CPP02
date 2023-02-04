@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:56:08 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/03 15:16:19 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:15:58 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	Point ( void );
 	~Point ( void );
 	Point (const Point &point);
-	Point & operator = (const Point & point);
+	Point operator = (const Point & point);
 
 	// Parametrized constructor
 	Point (const float x, const float y);

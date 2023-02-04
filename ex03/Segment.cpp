@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:34:39 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/03 15:44:19 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:31:34 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 //Segment::Segment ( void ) {}
 Segment::~Segment ( void ) {}
-//Segment::Segment (const Segment &segment){}
-//Segment & Segment::operator = (const Segment &segment) {}
+Segment::Segment (const Segment & segment) : 
+	_p1(segment._p1),
+	_p2(segment._p2),
+	_director(segment._director),
+	_normal(segment._normal)
+{}
+
+Segment Segment::operator = (const Segment &segment)
+{
+	return (Segment(segment));
+}
 
 //Parametrized constructor
 Segment::Segment (const Point & p1, const Point & p2, const Point & convexTo) : 

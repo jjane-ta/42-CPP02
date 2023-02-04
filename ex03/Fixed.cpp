@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:51:06 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/02 16:01:01 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:27:33 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ Fixed::Fixed ( void ) :
 	_value(0),
 	_error(0)
 {
-	
 	//std::cout << "Default constructor called\n";
 }
 

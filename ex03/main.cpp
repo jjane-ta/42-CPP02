@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:12:59 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/05 16:03:28 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 19:38:15 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int main( void )
 			std::cout << "\nOUTSIDE" << std::endl;
 		std::cout << std::endl; 
 	}
+
 	main_print_banner("On edge test");
 	{
 		if (bsp(Point(0,0), Point(3,3), Point(0,3), Point(0,3)))
@@ -56,6 +57,7 @@ int main( void )
 			std::cout << "\nOUTSIDE" << std::endl;
 		std::cout << std::endl; 
 	}
+
 	main_print_banner("BAD triangle test");
 	{
 		std::cout << "Vetices en la misma recta no forman un triangulo => ";
@@ -75,22 +77,12 @@ int main( void )
 		std::cout << std::endl; 
 
 	}
-
 	main_print_banner("BAD point test");
 	{
 		std::cout << "Puntos con el flag de error activo no son validos => ";
 		bsp(Point(0,0), Point(0,3), Point(3,3), Point(0,0.0f/0.0f));
 		std::cout << std::endl;
 	}
-
-
-
-
-
-
-
-
-
 	return 0;
 }
 

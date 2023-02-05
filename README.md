@@ -1,6 +1,4 @@
-# 42-CPP02
-
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+# 42-CPP02 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 This proyect implement usefull fixed class for a computer graphics and use it in bsp (Binary space partitioning) function.
 

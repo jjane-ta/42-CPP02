@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:02:11 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/01 17:50:12 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:09:27 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ public:
 	Fixed ( const float value );
 
 	// LIMITS
-	static float	max();
-	static float	min();
+	static float	max( void );
+	static float	min( void );
+//	static Fixed	max( void );
+//	static Fixed	min( void );
 	static Fixed	max(Fixed &a, Fixed &b);
 	static Fixed	max(const Fixed &a, const Fixed &b);
 	static Fixed	min(Fixed &a, Fixed &b);

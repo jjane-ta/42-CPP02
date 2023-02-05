@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:26:57 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 17:31:47 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:13:23 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	//Parametrized constructor
 	Segment (const Point & p1, const Point & p2, const Point & convexTo);
 	
-	Fixed	isLookingPoint(const Point point);
+	int		isLookingPoint(const Point point);
 	bool	good( void );
 	void	print( void );
 	
@@ -42,12 +42,14 @@ private:
 		
 	Vector _set_normal( const Point & convexTo );
 
+	int				_error;	
+	
 	const Point		_p1;
 	const Point		_p2;
 	const Vector	_director;
 	const Vector	_normal;
 	
-	int				_error;
+	
 
 };
 #endif /* __SEGMENT_H__ */

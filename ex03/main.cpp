@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:12:59 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 20:16:18 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:03:28 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int main( void )
 		bsp(Point(0.0f/0.0f,0), Point(0,3), Point(0,3), Point(0,3));
 		std::cout << std::endl;
 		std::cout << "2 : Puntos con el flag de error activo no son validos => ";
-		Fixed z = Fixed::max();
+		Fixed z;
+		z.setRawBits(INT_MAX);
 		z++;		
 		bsp(Point(z,0), Point(0,3), Point(0,3), Point(0,3));
 		std::cout << std::endl; 

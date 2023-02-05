@@ -6,7 +6,7 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:51:06 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 17:27:33 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:09:59 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,19 @@ float	Fixed::min()
 {
 	return (INT_MIN >> _n_fractionBits);
 }
+
+/*
+
+Fixed	Fixed::max()
+{
+	return (Fixed().setRawBits(INT_MAX));
+}
+
+Fixed	Fixed::min()
+{
+	return (Fixed().setRawBits(INT_MIN));
+}
+*/
 
 Fixed	Fixed::max(Fixed &a, Fixed &b)
 {

@@ -6,13 +6,13 @@
 /*   By: jjane-ta <jjane-ta@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:22:42 by jjane-ta          #+#    #+#             */
-/*   Updated: 2023/02/04 20:11:34 by jjane-ta         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:54:48 by jjane-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BspNode.hpp"
 
-# define DEBUG 0
+# define DEBUG 1
 
 BspNode::BspNode( void )
 {
